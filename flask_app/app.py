@@ -6,7 +6,7 @@ import os
 import scipy
 import gunicorn
 
-app = flask.Flask(__name__, template_folder='templates')
+app = flask.Flask(__name__, template_folder='templates', static_folder='static')
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -15,17 +15,16 @@ app = flask.Flask(__name__, template_folder='templates')
 def main():
     with open(os.path.join('..', 'models', 'ebw_gb_model_v2.pkl'), 'rb') as f:
         model = pickle.load(f)
-
     if flask.request.method == 'GET':
         return render_template('index.html', iw=47, ifoc=139, vf=4.5, fp=80, depth=1.60, width=2.54)
 
     if flask.request.method == 'POST':
         # запросить форму
         try:
-            iw = int(flask.request.form['IW'])
-            ifoc = int(flask.request.form['IF'])
+            iw = float(flask.request.form['IW'])
+            ifoc = float(flask.request.form['IF'])
             vf = float(flask.request.form['VF'])
-            fp = int(flask.request.form['FP'])
+            fp = float(flask.request.form['FP'])
         except ValueError:
             return render_template('index.html', depth="Неверный формат входных данных", width=":(")
         # сделать прогноз
