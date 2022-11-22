@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page of ebw_ml project</title>
+</head>
+<body>
+<form action="{{url_for('main')}}" method="POST">
+<div>
+ <table id="example" class="display" style="width:50%">
+        <thead>
+            <tr>
+                <th style="text-align:left"> IW </th>
+                <th style="text-align:left"> IF </th>
+                <th style="text-align:left"> VF </th>
+                <th style="text-align:left"> FP </th>
+                <th style="text-align:left"> Depth </th>
+                <th style="text-align:left"> Width </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" value="{{ iw }}" placeholder="47" name="IW"  size="4"></td>
+                <td><input type="text" value="{{ ifoc }}" placeholder="139" name="IF"  size="4"></td>
+                <td><input type="text" value="{{ vf }}" placeholder="4.5"  name="VF" size="4"></td>
+                <td><input type="text" value="{{ fp }}" placeholder="80" name="FP" size="4"></td>
+                <td>{{ depth }}</td>
+                <td>{{ width }}</td>
+            </tr>
+        </tbody>
+ </table>
+</div>
+    <br>
+    <br>
+<div>
+
+        <button style="color: blue;" type="submit">Predict...</button>
+
+</div>
+</form>
+</body>
+</html>
