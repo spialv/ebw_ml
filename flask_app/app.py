@@ -2,6 +2,7 @@ import flask
 from flask import render_template
 import pickle
 import numpy as np
+import os
 import scipy
 import gunicorn
 
@@ -12,7 +13,7 @@ app = flask.Flask(__name__, template_folder='templates')
 
 @app.route('/index', methods=['POST', 'GET'])
 def main():
-    with open('../models/ebw_gb_model.pkl', 'rb') as f:
+    with open(os.path.join('..', 'models', 'ebw_gb_model.pkl'), 'rb') as f:
         model = pickle.load(f)
 
     if flask.request.method == 'GET':
