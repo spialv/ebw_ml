@@ -13,7 +13,7 @@ app = flask.Flask(__name__, template_folder='templates')
 
 @app.route('/index', methods=['POST', 'GET'])
 def main():
-    with open(os.path.join('..', 'models', 'ebw_gb_model.pkl'), 'rb') as f:
+    with open(os.path.join('..', 'models', 'ebw_gb_model_v2.pkl'), 'rb') as f:
         model = pickle.load(f)
 
     if flask.request.method == 'GET':
